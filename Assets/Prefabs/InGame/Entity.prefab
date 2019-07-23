@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 889777647852229022}
   m_Layer: 8
   m_Name: Entity
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,3 +144,4 @@ MonoBehaviour:
   wanderRadius: 10
   wanderTimer: 0.5
   foodRadius: 10
+  food_qtty: 0

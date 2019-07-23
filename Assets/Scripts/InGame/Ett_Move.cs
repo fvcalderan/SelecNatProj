@@ -9,6 +9,8 @@ public class Ett_Move : MonoBehaviour
     public float wanderTimer;
     public float foodRadius;
 
+    public int food_qtty;
+
     private NavMeshAgent agent;
     private float timer;
     private GameObject foodObj;
@@ -16,6 +18,7 @@ public class Ett_Move : MonoBehaviour
     // Use this for initialization
     void OnEnable()
     {
+        food_qtty = 0;
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
     }
@@ -39,6 +42,7 @@ public class Ett_Move : MonoBehaviour
             agent.SetDestination(foodObj.transform.position);
             if (Vector3.Distance(this.gameObject.transform.position, foodObj.transform.position)<=1.5f)
             {
+                food_qtty++;
                 Destroy(foodObj.gameObject);
             }
         }
