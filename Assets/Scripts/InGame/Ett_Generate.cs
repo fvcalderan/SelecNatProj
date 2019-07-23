@@ -8,20 +8,22 @@ public class Ett_Generate : MonoBehaviour
 
     public GameObject entityPrefab;
     public int numOfEntities;
-
-    //public Text Hover_Text_Food;
-    //public GameObject Hover_Marker;
-
+    public float protectRadius;
 
     // Start is called before the first frame update
     void Start()
     {
-        //entityPrefab.GetComponent<Ett_Hover>().Text_Food = Hover_Text_Food;
-        //entityPrefab.GetComponent<Ett_Hover>().Marker = Hover_Marker;
-
         for (int i = 0; i < numOfEntities; i++)
         {
-            Vector3 position = new Vector3(Random.Range(-13.0f, 13.0f), 1.0f, Random.Range(-13.0f, 13.0f));
+            Vector3 position;
+            
+            do
+            {
+                position = new Vector3(Random.Range(-13.0f, 13.0f), 1.0f, Random.Range(-13.0f, 13.0f));
+                
+
+            }while(!ValidPosition(position, protectRadius));
+            
             Instantiate(entityPrefab, position, Quaternion.identity);
         }
         
@@ -32,4 +34,23 @@ public class Ett_Generate : MonoBehaviour
     {
         
     }
+
+    private bool ValidPosition(Vector3 center,float radius){
+
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            if (hitColliders[i].gameObject.tag=="Obstacle")
+            {
+                return false; 
+            }
+            i++;
+        }
+        return true;
+
+
+    }
+
+    
 }
