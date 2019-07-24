@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class Food_Manager : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class Food_Manager : MonoBehaviour
     public GameObject entityPrefab;
     public GameObject camSelect;
 
-    public float protectRadius;
+    public float SpawnRadius = 18;
     
     public float foodSpawnTime;
     public float foodHungerTime;
@@ -33,12 +35,9 @@ public class Food_Manager : MonoBehaviour
         {
             Vector3 position;
 
-            do
-            {
-                position = new Vector3(Random.Range(-13.0f, 13.0f), 0.0f, Random.Range(-13.0f, 13.0f));
+      
+            position = RandomNavmeshLocation(SpawnRadius);
 
-
-            } while (!ValidPosition(position, protectRadius));
 
             Instantiate(entityPrefab, position, Quaternion.identity);
 
@@ -68,19 +67,19 @@ public class Food_Manager : MonoBehaviour
         }
     }
 
-    private bool ValidPosition(Vector3 center, float radius)
+    public Vector3 RandomNavmeshLocation(float radius) 
     {
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        int i = 0;
-        while (i < hitColliders.Length)
-        {
-            if (hitColliders[i].gameObject.tag == "Obstacle" || hitColliders[i].gameObject.tag == "Entity")
+            Vector3 randomDirection = Random.insideUnitSphere * radius;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            Vector3 finalPosition = Vector3.zero;
+
+            if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) 
             {
-                return false;
+                finalPosition = hit.position;            
             }
-            i++;
-        }
-        return true;
+            return finalPosition;
+        
     }
 
 }
