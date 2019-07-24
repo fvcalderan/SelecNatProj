@@ -18,7 +18,6 @@ public class Ett_Move : MonoBehaviour
     // Use this for initialization
     void OnEnable()
     {
-        food_qtty = 0;
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
     }

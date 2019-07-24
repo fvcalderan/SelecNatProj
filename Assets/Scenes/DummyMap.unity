@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 1480542459}
+  placeHolder: {fileID: 1480542459}
 --- !u!135 &304037160
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -478,7 +479,7 @@ GameObject:
   - component: {fileID: 437069169}
   - component: {fileID: 437069168}
   m_Layer: 0
-  m_Name: Hover_Stuff
+  m_Name: HoverStuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,6 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text_Food: {fileID: 950062403}
   Marker: {fileID: 304037158}
+  CameraController: {fileID: 956965869}
 --- !u!4 &437069169
 Transform:
   m_ObjectHideFlags: 0
@@ -968,6 +970,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950062401}
   m_CullTransparentMesh: 0
+--- !u!1 &956965869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956965871}
+  - component: {fileID: 956965870}
+  m_Layer: 0
+  m_Name: CameraSelector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &956965870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956965869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b348d79c089c4b24191c1e5f341749d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1512229565}
+  mainCameraSelected: 1
+  marker: {fileID: 304037158}
+--- !u!4 &956965871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956965869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1144211714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1225,6 @@ GameObject:
   - component: {fileID: 1480542463}
   - component: {fileID: 1480542462}
   - component: {fileID: 1480542461}
-  - component: {fileID: 1480542460}
   m_Layer: 0
   m_Name: Marker_Placeholder
   m_TagString: Untagged
@@ -1185,19 +1232,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1480542460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480542459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c8143f01bd7c34ea9a692a55bcd1f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity: {fileID: 0}
 --- !u!135 &1480542461
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1454,8 +1488,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1549934137}
   - component: {fileID: 1549934138}
+  - component: {fileID: 1549934139}
   m_Layer: 0
-  m_Name: SpawnFood
+  m_Name: FoodManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1482,7 +1517,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549934136}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4600e8a79ba1bfe4f98964718e1bd3fe, type: 3}
   m_Name: 
@@ -1490,6 +1525,23 @@ MonoBehaviour:
   cam: {fileID: 1512229567}
   foodPrefab: {fileID: 7591175661055816190, guid: 6c0702faa3be0f74c9e68ce3fe4c5df4,
     type: 3}
+--- !u!114 &1549934139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549934136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9022e1cb40ba27b44a20a4abfe2ffb94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityPrefab: {fileID: 7591175661055816190, guid: 6c0702faa3be0f74c9e68ce3fe4c5df4,
+    type: 3}
+  protectRadius: 2
+  foodSpawnTime: 3
+  foodHungerTime: 8
 --- !u!1 &1600782367
 GameObject:
   m_ObjectHideFlags: 0
