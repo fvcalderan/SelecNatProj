@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 //using UnityEngine.UI;
 
 public class Ett_Generate : MonoBehaviour 
@@ -8,22 +9,14 @@ public class Ett_Generate : MonoBehaviour
 
     public GameObject entityPrefab;
     public int numOfEntities;
-    public float protectRadius;
+    public float spawnRadius;
 
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < numOfEntities; i++)
         {
-            Vector3 position;
-            
-            do
-            {
-                position = new Vector3(Random.Range(-13.0f, 13.0f), 1.0f, Random.Range(-13.0f, 13.0f));
-                
-
-            }while(!ValidPosition(position, protectRadius));
-            
+            Vector3 position = RandomNavmeshLocation(spawnRadius);
             Instantiate(entityPrefab, position, Quaternion.identity);
         }
         
@@ -35,22 +28,17 @@ public class Ett_Generate : MonoBehaviour
         
     }
 
-    private bool ValidPosition(Vector3 center,float radius){
+ public Vector3 RandomNavmeshLocation(float radius) 
+ {
+         Vector3 randomDirection = Random.insideUnitSphere * radius;
+         randomDirection += transform.position;
+         NavMeshHit hit;
+         Vector3 finalPosition = Vector3.zero;
 
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        int i = 0;
-        while (i < hitColliders.Length)
-        {
-            if (hitColliders[i].gameObject.tag=="Obstacle")
-            {
-                return false; 
-            }
-            i++;
-        }
-        return true;
-
-
-    }
-
-    
+         if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) 
+         {
+             finalPosition = hit.position;            
+         }
+         return finalPosition;
+     }
 }
