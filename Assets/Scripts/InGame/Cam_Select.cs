@@ -21,16 +21,22 @@ public class Cam_Select : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space") && canChangeCam)
+        if (Input.GetKeyDown("space") && canChangeCam && marker.GetComponent<Mk_Follow>().entity.transform.childCount > 0)
         {
             if (mainCameraSelected)
             {
                 mainCamera.SetActive(false);
-                marker.GetComponent<Mk_Follow>().entity.transform.GetChild(0).gameObject.SetActive(true);
+                if (marker.GetComponent<Mk_Follow>().entity.transform.childCount > 0)
+                {
+                    marker.GetComponent<Mk_Follow>().entity.transform.GetChild(0).gameObject.SetActive(true);
+                }
                 mainCameraSelected = false;
             } else
             {
-                marker.GetComponent<Mk_Follow>().entity.transform.GetChild(0).gameObject.SetActive(false);
+                if (marker.GetComponent<Mk_Follow>().entity.transform.childCount > 0)
+                {
+                    marker.GetComponent<Mk_Follow>().entity.transform.GetChild(0).gameObject.SetActive(false);
+                }
                 mainCamera.SetActive(true);
                 mainCameraSelected = true;
             }

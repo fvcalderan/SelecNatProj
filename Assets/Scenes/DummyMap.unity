@@ -1539,6 +1539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityPrefab: {fileID: 7591175661055816190, guid: 6c0702faa3be0f74c9e68ce3fe4c5df4,
     type: 3}
+  camSelect: {fileID: 956965869}
   protectRadius: 2
   foodSpawnTime: 3
   foodHungerTime: 8

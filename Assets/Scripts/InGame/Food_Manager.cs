@@ -6,6 +6,8 @@ public class Food_Manager : MonoBehaviour
 {
 
     public GameObject entityPrefab;
+    public GameObject camSelect;
+
     public float protectRadius;
     
     public float foodSpawnTime;
@@ -53,7 +55,11 @@ public class Food_Manager : MonoBehaviour
                 entity.GetComponent<Ett_Move>().food_qtty--;
                 if (entity.GetComponent<Ett_Move>().food_qtty==0)
                 {
-
+                    if (camSelect.GetComponent<Cam_Select>().marker.GetComponent<Mk_Follow>().entity == entity)
+                    {
+                        camSelect.GetComponent<Cam_Select>().mainCamera.SetActive(true);
+                        camSelect.GetComponent<Cam_Select>().mainCameraSelected = true;
+                    }
                     Destroy(entity);
                 }
             }
