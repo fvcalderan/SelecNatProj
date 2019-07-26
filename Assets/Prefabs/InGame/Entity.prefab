@@ -219,9 +219,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wanderRadius: 10
-  wanderTimer: 0.5
-  foodRadius: 10
-  food_qtty: 3
+  wanderTimer: 1.2
+  foodRange: 12
+  food_qtty: 10
+  isLookingForPartner: 0
+  readyToReproduce: 0
+  partnerRange: 12
+  partnerFound: 0
+  partnerHunger: 12
+  partnerObj: {fileID: 0}
+  entityPrefab: {fileID: 2707617571709997364}
 --- !u!1 &3715181414059715514
 GameObject:
   m_ObjectHideFlags: 0

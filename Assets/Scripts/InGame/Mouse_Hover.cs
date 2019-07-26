@@ -7,6 +7,11 @@ public class Mouse_Hover : MonoBehaviour
 {
 
     public Text Text_Food;
+    public Text Text_Partner;
+    public Text Text_Food_Range;
+    public Text Text_Partner_Range;
+    public Text Text_Wander_Time;
+    public Text Text_Wander_Range;
     public GameObject Marker;
     public GameObject CameraController;
 
@@ -40,9 +45,19 @@ public class Mouse_Hover : MonoBehaviour
         if (lastHit != null)
         {
             Text_Food.text = lastHit.GetComponent<Ett_Move>().food_qtty.ToString();
+            Text_Partner.text = lastHit.GetComponent<Ett_Move>().partnerHunger.ToString();
+            Text_Food_Range.text = lastHit.GetComponent<Ett_Move>().foodRange.ToString();
+            Text_Partner_Range.text = lastHit.GetComponent<Ett_Move>().partnerRange.ToString();
+            Text_Wander_Time.text = lastHit.GetComponent<Ett_Move>().wanderTimer.ToString();
+            Text_Wander_Range.text = lastHit.GetComponent<Ett_Move>().wanderRadius.ToString();
         } else
         {
             Text_Food.text = "0";
+            Text_Partner.text = "0";
+            Text_Food_Range.text = "0";
+            Text_Partner_Range.text = "0";
+            Text_Wander_Time.text = "0";
+            Text_Wander_Range.text = "0";
         }
         
     }

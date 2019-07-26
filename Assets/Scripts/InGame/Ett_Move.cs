@@ -7,13 +7,26 @@ public class Ett_Move : MonoBehaviour
 {
     public float wanderRadius;
     public float wanderTimer;
-    public float foodRadius;
+    public float foodRange;
 
     public int food_qtty;
 
     private NavMeshAgent agent;
     private float timer;
+
+    public bool isLookingForPartner;
+
+    public bool readyToReproduce = false;
+
+    public float partnerRange = 3;
+
+    public bool partnerFound = false;
+
+    public int partnerHunger = 10;
     private GameObject foodObj;
+    public GameObject partnerObj = null;
+
+    public GameObject entityPrefab;
 
     // Use this for initialization
     void OnEnable()
@@ -25,27 +38,66 @@ public class Ett_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foodObj = CheckForFood(this.gameObject.transform.position, foodRadius);
-        if (foodObj==null)
+
+        if (food_qtty >= partnerHunger)
         {
-            timer += Time.deltaTime;
-            if (timer >= wanderTimer)
-            {
-                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
-                agent.SetDestination(newPos);
-                timer = 0;
-            }
+            isLookingForPartner = true;
         }
         else
         {
-            agent.SetDestination(foodObj.transform.position);
-            if (Vector3.Distance(this.gameObject.transform.position, foodObj.transform.position)<=1.5f)
+            isLookingForPartner = false;
+        }
+
+        if (isLookingForPartner)
+        {
+            partnerObj = CheckForPartner(this.gameObject.transform.position, partnerRange);
+            if (partnerObj != null)
             {
-                food_qtty++;
-                Destroy(foodObj.gameObject);
+                partnerFound = true;
+            }
+            else
+            {
+                partnerFound = false;
             }
         }
-        
+
+        if (partnerFound)
+        {
+
+            agent.ResetPath(); 
+            agent.SetDestination(partnerObj.transform.position);
+
+            if (Vector3.Distance(this.gameObject.transform.position, partnerObj.transform.position) <= 1.0f)
+            {
+                readyToReproduce = true;
+            }
+
+        }
+        else
+        {
+            foodObj = CheckFoodDistance();
+
+            if (foodObj == null)
+            {   
+                timer += Time.deltaTime;
+                if (timer >= wanderTimer)
+                {
+                    Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+                    agent.SetDestination(newPos);
+                    timer = 0;
+                }
+            }
+            else
+            {
+                agent.SetDestination(foodObj.transform.position);
+                if (Vector3.Distance(this.gameObject.transform.position, foodObj.transform.position) <= 1.5f)
+                {
+                    food_qtty++;
+                    Destroy(foodObj.gameObject);
+                }
+            }
+        }
+
     }
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
@@ -57,18 +109,39 @@ public class Ett_Move : MonoBehaviour
         return navHit.position;
     }
 
-    public GameObject CheckForFood(Vector3 center, float radius)
+    public GameObject CheckForPartner(Vector3 center, float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         int i = 0;
         while (i < hitColliders.Length)
         {
-            if (hitColliders[i].gameObject.tag=="Food")
+            if (hitColliders[i].gameObject.GetInstanceID() != this.gameObject.GetInstanceID() && hitColliders[i].gameObject.tag == "Entity" && hitColliders[i].gameObject.GetComponent<Ett_Move>().isLookingForPartner)
             {
-                return hitColliders[i].gameObject; 
+                return hitColliders[i].gameObject;
             }
             i++;
         }
+
         return null;
+    }
+    public GameObject CheckFoodDistance()
+    {
+        GameObject[] foods = GameObject.FindGameObjectsWithTag("Food");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+ 
+        foreach (GameObject food in foods)
+        {
+            Vector3 diff = food.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance && curDistance <= Mathf.Pow(foodRange,2))
+            {
+                closest = food;
+                distance = curDistance;
+            }
+            
+        }
+        return closest;
     }
 }
