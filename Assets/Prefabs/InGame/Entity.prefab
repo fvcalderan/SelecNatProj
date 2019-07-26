@@ -86,9 +86,9 @@ GameObject:
   - component: {fileID: 2707617571709997353}
   - component: {fileID: 2707617571709997366}
   - component: {fileID: 2707617571709997367}
-  - component: {fileID: 2707617571709997355}
   - component: {fileID: 2707617571709997354}
   - component: {fileID: 889777647852229022}
+  - component: {fileID: 8970853872915111327}
   m_Layer: 8
   m_Name: Entity
   m_TagString: Entity
@@ -172,18 +172,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2707617571709997355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707617571709997364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a937cea7310213744822dad33b66c4ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &2707617571709997354
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -229,6 +217,18 @@ MonoBehaviour:
   partnerHunger: 12
   partnerObj: {fileID: 0}
   entityPrefab: {fileID: 2707617571709997364}
+--- !u!114 &8970853872915111327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707617571709997364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b89c03da28e764488bdbe98b893c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3715181414059715514
 GameObject:
   m_ObjectHideFlags: 0
