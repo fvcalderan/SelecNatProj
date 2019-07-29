@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Mouse_Hover : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Mouse_Hover : MonoBehaviour
     public Text Text_Partner_Range;
     public Text Text_Wander_Time;
     public Text Text_Wander_Range;
+
+    public Text Text_Speed;
     public GameObject Marker;
     public GameObject CameraController;
 
@@ -50,6 +53,7 @@ public class Mouse_Hover : MonoBehaviour
             Text_Partner_Range.text = lastHit.GetComponent<Ett_Move>().partnerRange.ToString();
             Text_Wander_Time.text = lastHit.GetComponent<Ett_Move>().wanderTimer.ToString();
             Text_Wander_Range.text = lastHit.GetComponent<Ett_Move>().wanderRadius.ToString();
+            Text_Speed.text = lastHit.GetComponent<NavMeshAgent>().speed.ToString();
         } else
         {
             Text_Food.text = "0";
@@ -58,6 +62,7 @@ public class Mouse_Hover : MonoBehaviour
             Text_Partner_Range.text = "0";
             Text_Wander_Time.text = "0";
             Text_Wander_Range.text = "0";
+            Text_Speed.text = "0";
         }
         
     }
