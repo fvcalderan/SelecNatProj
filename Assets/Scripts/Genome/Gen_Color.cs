@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Gen_Color : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class Gen_Color : MonoBehaviour
         float foodRange = Scale(5.0f, 20.0f, 0.0f, 1.0f, GetComponent<Ett_Move>().foodRange);
         float partnerRange = Scale(5.0f, 20.0f, 0.0f, 1.0f, GetComponent<Ett_Move>().partnerRange);
         float partnerHunger = Scale(12.0f, 30.0f, 0.0f, 1.0f, GetComponent<Ett_Move>().partnerHunger);
+        float speed = Scale(1.0f, 6.0f, 0.0f, 1.0f, GetComponent<NavMeshAgent>().speed);
 
         Color bodyColor = new Color(wanderRadius, foodRange, partnerRange, 1.0f);
-        Color armsColor = new Color(wanderTime, 0, partnerHunger, 1.0f);
+        Color armsColor = new Color(wanderTime, speed, partnerHunger, 1.0f);
 
         GetComponent<Renderer>().material.color = bodyColor;
 
