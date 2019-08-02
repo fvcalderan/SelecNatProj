@@ -15,9 +15,14 @@ public class Food_Manager : MonoBehaviour
     public float foodSpawnTime;
     public float foodHungerTime;
 
+    public int foodMaxQuantity = 0;
+
+    [HideInInspector]
+    public int foodQuantity = 0;
+
     private float foodTimer;
     private float hungerTimer;
-
+    
     private GameObject[] entities;
 
 
@@ -31,7 +36,7 @@ public class Food_Manager : MonoBehaviour
     void Update()
     {
         foodTimer += Time.deltaTime;
-        if (foodTimer >= foodSpawnTime)
+        if (foodTimer >= foodSpawnTime && foodQuantity < foodMaxQuantity)
         {
             Vector3 position;
 
@@ -40,6 +45,7 @@ public class Food_Manager : MonoBehaviour
 
 
             Instantiate(entityPrefab, position, Quaternion.identity);
+            foodQuantity++;
 
             foodTimer = 0;
         }

@@ -25,12 +25,14 @@ public class Ett_Move : MonoBehaviour
     public int partnerHunger = 10;
     private GameObject foodObj;
     public GameObject partnerObj = null;
+    public GameObject foodManager;
 
     public GameObject entityPrefab;
 
     // Use this for initialization
     void OnEnable()
     {
+        foodManager = GameObject.Find("FoodManager");
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
     }
@@ -67,7 +69,7 @@ public class Ett_Move : MonoBehaviour
             agent.ResetPath(); 
             agent.SetDestination(partnerObj.transform.position);
 
-            if (Vector3.Distance(this.gameObject.transform.position, partnerObj.transform.position) <= 1.0f)
+            if (Vector3.Distance(this.gameObject.transform.position, partnerObj.transform.position) <= 1.5f)
             {
                 readyToReproduce = true;
             }
@@ -94,6 +96,7 @@ public class Ett_Move : MonoBehaviour
                 {
                     food_qtty++;
                     Destroy(foodObj.gameObject);
+                    foodManager.GetComponent<Food_Manager>().foodQuantity--;
                 }
             }
         }
