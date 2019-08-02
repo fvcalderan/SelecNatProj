@@ -26,7 +26,7 @@ public class Ett_Generate : MonoBehaviour
             newEntity.GetComponent<Ett_Move>().wanderRadius = Random.Range(5.0f, 20.0f);
             newEntity.GetComponent<Ett_Move>().wanderTimer = Random.Range(0.25f, 3.5f);
             newEntity.GetComponent<NavMeshAgent>().speed = Random.Range(1.0f, 6.0f);
-
+            newEntity.GetComponent<Ett_Move>().generation = 1;
         }
 
     }

@@ -9,6 +9,7 @@ public class Mouse_Hover : MonoBehaviour
 
 
     private Text Text_Food;
+    private Text Text_Generation;
     private Text Text_Partner;
     private Text Text_Food_Range;
     private Text Text_Partner_Range;
@@ -33,6 +34,7 @@ public class Mouse_Hover : MonoBehaviour
         Text_Wander_Time = GameObject.Find("Text_Wander_Time").GetComponent<Text>();
         Text_Wander_Range = GameObject.Find("Text_Wander_Range").GetComponent<Text>();
         Text_Speed = GameObject.Find("Text_Speed").GetComponent<Text>();
+        Text_Generation = GameObject.Find("Text_Generation").GetComponent<Text>();
 
         Marker = GameObject.Find("Marker");
         CameraController = GameObject.Find("CameraSelector");
@@ -79,6 +81,7 @@ public class Mouse_Hover : MonoBehaviour
         if (lastHit != null)
         {
             Text_Food.text = lastHit.GetComponent<Ett_Move>().food_qtty.ToString();
+            Text_Generation.text = lastHit.GetComponent<Ett_Move>().generation.ToString();
             Text_Partner.text = lastHit.GetComponent<Ett_Move>().partnerHunger.ToString();
             Text_Food_Range.text = lastHit.GetComponent<Ett_Move>().foodRange.ToString();
             Text_Partner_Range.text = lastHit.GetComponent<Ett_Move>().partnerRange.ToString();
@@ -87,6 +90,7 @@ public class Mouse_Hover : MonoBehaviour
             Text_Speed.text = lastHit.GetComponent<NavMeshAgent>().speed.ToString();
         } else
         {
+            Text_Generation.text = "0";
             Text_Food.text = "0";
             Text_Partner.text = "0";
             Text_Food_Range.text = "0";

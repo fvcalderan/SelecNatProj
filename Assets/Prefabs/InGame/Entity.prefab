@@ -221,7 +221,6 @@ MonoBehaviour:
   partnerObj: {fileID: 0}
   foodManager: {fileID: 0}
   entityPrefab: {fileID: 2707617571709997364}
-  boredTimeSet: 5
 --- !u!114 &8970853872915111327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b89c03da28e764488bdbe98b893c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-9132667593517461080
+--- !u!114 &
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

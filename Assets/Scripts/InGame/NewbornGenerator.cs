@@ -11,6 +11,8 @@ public class NewbornGenerator : MonoBehaviour
 
     public float tolerance;
 
+    public int BirthCount = 0;
+
 
 
     // Start is called before the first frame update
@@ -44,7 +46,8 @@ public class NewbornGenerator : MonoBehaviour
                     Vector3 position = 0.5f*(hitColliders[i].gameObject.GetComponent<Ett_Move>().transform.position + hitColliders[i].gameObject.GetComponent<Ett_Move>().partnerObj.GetComponent<Ett_Move>().transform.position);
                     newbornObj = Instantiate(entityPrefab, position, Quaternion.identity);
                     Debug.Log("WELCOME DEAR NEWBORN");
-
+                    BirthCount ++;
+                    
 
 
                     hitColliders[i].gameObject.GetComponent<Ett_Move>().food_qtty -= Mathf.FloorToInt(hitColliders[i].gameObject.GetComponent<Ett_Move>().partnerHunger * 0.7f);
@@ -148,6 +151,7 @@ public class NewbornGenerator : MonoBehaviour
                     }
 
                     SetNewbornAttributes(hitColliders[i],randomize_attr);
+                    newbornObj.GetComponent<Ett_Move>().generation = 1 + Mathf.Max(hitColliders[i].GetComponent<Ett_Move>().generation, hitColliders[i].GetComponent<Ett_Move>().partnerObj.GetComponent<Ett_Move>().generation);
 
 
                     hitColliders[i].gameObject.GetComponent<Ett_Move>().partnerObj.GetComponent<Ett_Move>().isLookingForPartner = false;

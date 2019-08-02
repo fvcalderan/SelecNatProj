@@ -25,6 +25,8 @@ public class Ett_Move : MonoBehaviour
     public bool partnerFound = false;
 
     public int partnerHunger = 10;
+    
+    public int generation; 
     private GameObject foodObj;
 
     [HideInInspector]
@@ -73,6 +75,7 @@ public class Ett_Move : MonoBehaviour
         if (partnerFound && food_qtty >= partnerHunger)
         {
 
+
             agent.ResetPath();
 
             if (partnerObj != null && boredTime <= boredTimeSet)
@@ -84,6 +87,7 @@ public class Ett_Move : MonoBehaviour
             {
                 boredTime = 0.0f;
             }
+
 
             if (Vector3.Distance(this.gameObject.transform.position, partnerObj.transform.position) <= 1.5f)
             {
