@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: dbba42b49b5d1d4499b2f69dd1bca9d3
+  - enabled: 1
+    path: Assets/Scenes/DummyMap.unity
+    guid: d4d81a934f9b6ce4494fa6f5e65f6881
+  - enabled: 1
+    path: Assets/Scenes/TerrainMap.unity
+    guid: a6ce147c3e396b046902b3b026787d3f
+  - enabled: 1
+    path: Assets/Scenes/JumpMap.unity
+    guid: d1d062f4f897f8b429683f425237e35f
   m_configObjects: {}
