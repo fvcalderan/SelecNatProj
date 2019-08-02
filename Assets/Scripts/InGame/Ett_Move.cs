@@ -47,8 +47,7 @@ public class Ett_Move : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
+    {   
         if (food_qtty >= partnerHunger)
         {
             isLookingForPartner = true;
@@ -119,6 +118,11 @@ public class Ett_Move : MonoBehaviour
             }
         }
 
+        if (!GetComponent<Ett_Stopped>().IsMoving)
+        {
+            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+            agent.SetDestination(newPos);
+        }
     }
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)

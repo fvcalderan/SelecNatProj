@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Ett_OffMesh : MonoBehaviour
 {
     private NavMeshAgent agent;
+    [HideInInspector]
     public bool linking;
     public float origSpeed;
     public float linkSpeed;
