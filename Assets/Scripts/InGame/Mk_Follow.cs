@@ -5,12 +5,15 @@ using UnityEngine;
 public class Mk_Follow : MonoBehaviour
 {
 
+    [HideInInspector]
     public GameObject entity;
-    public GameObject placeHolder;
+
+    private GameObject placeHolder;
     // Start is called before the first frame update
     void Start()
     {
-        
+        placeHolder = GameObject.Find("Marker_Placeholder");
+        entity = GameObject.Find("Marker_Placeholder");
     }
 
     // Update is called once per frame

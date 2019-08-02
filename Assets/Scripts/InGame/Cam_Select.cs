@@ -5,9 +5,13 @@ using UnityEngine;
 public class Cam_Select : MonoBehaviour
 {
 
+    [HideInInspector]
     public GameObject mainCamera;
+
+    [HideInInspector]
     public bool mainCameraSelected;
 
+    [HideInInspector]
     public GameObject marker;
 
     private bool canChangeCam = true;
@@ -15,7 +19,8 @@ public class Cam_Select : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainCamera = GameObject.Find("Main Camera");
+        marker = GameObject.Find("Marker");
     }
 
     // Update is called once per frame

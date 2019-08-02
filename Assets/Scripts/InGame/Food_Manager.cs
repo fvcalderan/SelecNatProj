@@ -8,7 +8,7 @@ public class Food_Manager : MonoBehaviour
 {
 
     public GameObject entityPrefab;
-    public GameObject camSelect;
+    private GameObject camSelect;
 
     public float SpawnRadius = 18;
     
@@ -29,7 +29,7 @@ public class Food_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        camSelect = GameObject.Find("CameraSelector");
     }
 
     // Update is called once per frame

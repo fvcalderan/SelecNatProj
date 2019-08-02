@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class Time_Elapsed : MonoBehaviour
 {
 
-    public Text Text_Elapsed;
+    private Text Text_Elapsed;
     float timer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Text_Elapsed = GameObject.Find("Text_Elapsed").GetComponent<Text>();
     }
 
     // Update is called once per frame

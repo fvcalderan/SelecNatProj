@@ -1054,7 +1054,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8437089ca3c554ea6992f03c2bf498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text_Speed: {fileID: 2074558599}
 --- !u!4 &679740068
 Transform:
   m_ObjectHideFlags: 0
@@ -1418,7 +1417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fe3f7878ecb3b46bcc1aacf0325a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text_Elapsed: {fileID: 1006592726}
 --- !u!4 &956296565
 Transform:
   m_ObjectHideFlags: 0
@@ -2161,7 +2159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityPrefab: {fileID: 7591175661055816190, guid: 6c0702faa3be0f74c9e68ce3fe4c5df4,
     type: 3}
-  camSelect: {fileID: 956965869}
   SpawnRadius: 22
   foodSpawnTime: 0.5
   foodHungerTime: 8
@@ -2545,15 +2542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1009b576e5f4b645a3c39bbcf5d9c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text_Food: {fileID: 1389227941}
-  Text_Partner: {fileID: 170284988}
-  Text_Food_Range: {fileID: 427629474}
-  Text_Partner_Range: {fileID: 453883248}
-  Text_Wander_Time: {fileID: 314561199}
-  Text_Wander_Range: {fileID: 1252401683}
-  Text_Speed: {fileID: 1563683122}
-  Marker: {fileID: 2037725606}
-  CameraController: {fileID: 956965869}
 --- !u!4 &1916868757
 Transform:
   m_ObjectHideFlags: 0
@@ -2655,7 +2643,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 435877873}
-  placeHolder: {fileID: 435877873}
 --- !u!135 &2037725608
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2826,7 +2813,7 @@ GameObject:
   - component: {fileID: 2074558600}
   - component: {fileID: 2074558599}
   m_Layer: 5
-  m_Name: Text_Speed
+  m_Name: Text_TSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

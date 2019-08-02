@@ -7,23 +7,35 @@ using UnityEngine.AI;
 public class Mouse_Hover : MonoBehaviour
 {
 
-    public Text Text_Food;
-    public Text Text_Partner;
-    public Text Text_Food_Range;
-    public Text Text_Partner_Range;
-    public Text Text_Wander_Time;
-    public Text Text_Wander_Range;
 
-    public Text Text_Speed;
-    public GameObject Marker;
-    public GameObject CameraController;
+    private Text Text_Food;
+    private Text Text_Partner;
+    private Text Text_Food_Range;
+    private Text Text_Partner_Range;
+    private Text Text_Wander_Time;
+    private Text Text_Wander_Range;
+    private Text Text_Speed;
+
+    private GameObject Marker;
+    private GameObject CameraController;
 
     private GameObject lastHit = null;
+
+    private Collider[] colliders;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Text_Food = GameObject.Find("Text_Food").GetComponent<Text>();
+        Text_Partner = GameObject.Find("Text_Partner").GetComponent<Text>();
+        Text_Food_Range = GameObject.Find("Text_Food_Range").GetComponent<Text>();
+        Text_Partner_Range = GameObject.Find("Text_Partner_Range").GetComponent<Text>();
+        Text_Wander_Time = GameObject.Find("Text_Wander_Time").GetComponent<Text>();
+        Text_Wander_Range = GameObject.Find("Text_Wander_Range").GetComponent<Text>();
+        Text_Speed = GameObject.Find("Text_Speed").GetComponent<Text>();
+
+        Marker = GameObject.Find("Marker");
+        CameraController = GameObject.Find("CameraSelector");
     }
 
     // Update is called once per frame
@@ -37,9 +49,28 @@ public class Mouse_Hover : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag == "Entity")
+
+                colliders = Physics.OverlapSphere(hit.point, 1.5f);
+
+                GameObject closest = null;
+                float distance = Mathf.Infinity;
+
+                foreach (Collider co in colliders)
                 {
-                    lastHit = hit.collider.gameObject;
+                    if (co.gameObject.tag == "Entity")
+                    {
+                        Vector3 diff = co.gameObject.transform.position - hit.point;
+                        float curDistance = diff.sqrMagnitude;
+                        if (curDistance < distance)
+                        {
+                            closest = co.gameObject;
+                            distance = curDistance;
+                        }
+                    }
+                }
+                if (closest != null)
+                {
+                    lastHit = closest.gameObject;
                     Marker.GetComponent<Mk_Follow>().entity = lastHit;
                 }
             }
