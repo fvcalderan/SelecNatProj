@@ -148,6 +148,7 @@ public class NewbornGenerator : MonoBehaviour
                     }
 
                     SetNewbornAttributes(hitColliders[i],randomize_attr);
+                    newbornObj.GetComponent<Ett_Move>().generation = 1 + Mathf.Max(hitColliders[i].GetComponent<Ett_Move>().generation, hitColliders[i].GetComponent<Ett_Move>().partnerObj.GetComponent<Ett_Move>().generation);
 
 
                     hitColliders[i].gameObject.GetComponent<Ett_Move>().partnerObj.GetComponent<Ett_Move>().isLookingForPartner = false;

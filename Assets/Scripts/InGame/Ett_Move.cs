@@ -23,6 +23,8 @@ public class Ett_Move : MonoBehaviour
     public bool partnerFound = false;
 
     public int partnerHunger = 10;
+    
+    public int generation; 
     private GameObject foodObj;
     public GameObject partnerObj = null;
     public GameObject foodManager;
@@ -67,7 +69,11 @@ public class Ett_Move : MonoBehaviour
         {
 
             agent.ResetPath(); 
-            agent.SetDestination(partnerObj.transform.position);
+
+            if(partnerObj != null)
+            {
+                agent.SetDestination(partnerObj.transform.position);
+            }
 
             if (Vector3.Distance(this.gameObject.transform.position, partnerObj.transform.position) <= 1.5f)
             {
