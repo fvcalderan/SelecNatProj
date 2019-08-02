@@ -14,22 +14,30 @@ public class Ett_Move : MonoBehaviour
     private NavMeshAgent agent;
     private float timer;
 
+    [HideInInspector]
     public bool isLookingForPartner;
-
+    [HideInInspector]
     public bool readyToReproduce = false;
 
     public float partnerRange = 3;
 
+    [HideInInspector]
     public bool partnerFound = false;
 
     public int partnerHunger = 10;
     
     public int generation; 
     private GameObject foodObj;
+
+    [HideInInspector]
     public GameObject partnerObj = null;
+    [HideInInspector]
     public GameObject foodManager;
 
     public GameObject entityPrefab;
+
+    public float boredTimeSet;
+    private float boredTime = 0.0f;
 
     // Use this for initialization
     void OnEnable()
@@ -65,19 +73,27 @@ public class Ett_Move : MonoBehaviour
             }
         }
 
-        if (partnerFound)
+        if (partnerFound && food_qtty >= partnerHunger)
         {
 
-            agent.ResetPath(); 
 
-            if(partnerObj != null)
+            agent.ResetPath();
+
+            if (partnerObj != null && boredTime <= boredTimeSet)
             {
+                boredTime += Time.deltaTime;
                 agent.SetDestination(partnerObj.transform.position);
             }
+            else
+            {
+                boredTime = 0.0f;
+            }
+
 
             if (Vector3.Distance(this.gameObject.transform.position, partnerObj.transform.position) <= 1.5f)
             {
                 readyToReproduce = true;
+                boredTime = 0.0f;
             }
 
         }

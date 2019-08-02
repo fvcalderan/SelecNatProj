@@ -20,6 +20,7 @@ public class Food_Manager : MonoBehaviour
     [HideInInspector]
     public int foodQuantity = 0;
 
+    public int DeathCount = 0;
     private float foodTimer;
     private float hungerTimer;
     
@@ -66,6 +67,7 @@ public class Food_Manager : MonoBehaviour
                         camSelect.GetComponent<Cam_Select>().mainCameraSelected = true;
                     }
                     Destroy(entity);
+                    DeathCount++;
                 }
             }
 
