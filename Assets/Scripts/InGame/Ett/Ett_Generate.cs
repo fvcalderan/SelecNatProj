@@ -13,9 +13,14 @@ public class Ett_Generate : MonoBehaviour
 
     private GameObject newEntity;
 
+    private GameObject MapConfig;
     // Start is called before the first frame update
     void Start()
     {
+        MapConfig = GameObject.Find("MapConfig");
+
+        numOfEntities = MapConfig.GetComponent<MM_MapConfig>().EttQtty;
+
         for (int i = 0; i < numOfEntities; i++)
         {
             Vector3 position = RandomNavmeshLocation(spawnRadius);

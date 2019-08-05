@@ -26,10 +26,17 @@ public class Food_Manager : MonoBehaviour
     
     private GameObject[] entities;
 
+    private GameObject MapConfig;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        MapConfig = GameObject.Find("MapConfig");
+
+        foodSpawnTime = MapConfig.GetComponent<MM_MapConfig>().FoodSpeed;
+        foodMaxQuantity = MapConfig.GetComponent<MM_MapConfig>().FoodQtty;
+
         camSelect = GameObject.Find("CameraSelector");
     }
 

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: dbba42b49b5d1d4499b2f69dd1bca9d3
   - enabled: 1
+    path: Assets/Scenes/EndSimMenu.unity
+    guid: 64af0f9cf9eff254baa8d729c033512d
+  - enabled: 1
     path: Assets/Scenes/DummyMap.unity
     guid: d4d81a934f9b6ce4494fa6f5e65f6881
   - enabled: 1
