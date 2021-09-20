@@ -35,7 +35,8 @@ public class Time_Elapsed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer <= maxTime)
+        GameObject[] entities = GameObject.FindGameObjectsWithTag("Entity");
+        if (timer <= maxTime && entities.Length != 0 )
         {
             timer += Time.deltaTime;
             Text_Elapsed.text = timer.ToString("0") + " s";

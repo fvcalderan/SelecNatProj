@@ -10,6 +10,10 @@ public class Time_Scaler : MonoBehaviour
 
     private GameObject MapConfig;
 
+    private Button BTN_Normal;
+    private Button BTN_Rapido;
+    private Button BTN_MtRapido;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,15 @@ public class Time_Scaler : MonoBehaviour
         Text_TSpeed = GameObject.Find("Text_TSpeed").GetComponent<Text>();
 
         Text_TSpeed.text = "x"+MapConfig.GetComponent<MM_MapConfig>().SimSpeed.ToString();
+
+        // Buttons that control the simulation speed
+        BTN_Normal = GameObject.Find("BTN_Normal").GetComponent<Button>();
+        BTN_Rapido = GameObject.Find("BTN_Rapido").GetComponent<Button>();
+        BTN_MtRapido = GameObject.Find("BTN_MtRapido").GetComponent<Button>();
+
+        BTN_Normal.onClick.AddListener(BTN_Normal_on_Click);
+        BTN_Rapido.onClick.AddListener(BTN_Rapido_on_Click);
+        BTN_MtRapido.onClick.AddListener(BTN_MtRapido_on_Click);
         
     }
 
@@ -99,5 +112,25 @@ public class Time_Scaler : MonoBehaviour
             Text_TSpeed.text = "x512";
         }
         */
+    }
+
+    // OnClick methods for simulation speed changes
+    void BTN_Normal_on_Click()
+    {
+        Time.timeScale = 1.0f;
+        //Time.fixedDeltaTime = Time.timeScale;
+        Text_TSpeed.text = "x1";
+    }
+    void BTN_Rapido_on_Click()
+    {
+        Time.timeScale = 8.0f;
+        //Time.fixedDeltaTime = Time.timeScale;
+        Text_TSpeed.text = "x8";
+    }
+    void BTN_MtRapido_on_Click()
+    {
+        Time.timeScale = 32.0f;
+        //Time.fixedDeltaTime = Time.timeScale;
+        Text_TSpeed.text = "x32";
     }
 }
